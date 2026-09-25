@@ -120,8 +120,9 @@ funding ask.
 ## 6. Why this fits SCF / grant-maturity criteria
 
 - **Open-core boundary, not a walled garden.** Everything needed to run the
-  engine end-to-end is in this repo under Apache-2.0; only the proprietary
-  route-health intelligence behind the `RouteResolver` seam is closed, and
+  engine end-to-end is in this repo under Apache-2.0. The `RouteResolver` seam
+  can support proprietary route-health intelligence in a future separate
+  component, but no such closed component or dataset currently exists here, and
   that seam is a single injected interface, not a scattered set of gates.
 - **Protocol-standard depth.** The engine speaks SEP-10/12/31/38 generically,
   not per-anchor bespoke code — the conformance suite in `@corridor/adapter-kit`

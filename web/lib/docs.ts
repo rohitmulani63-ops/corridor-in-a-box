@@ -30,8 +30,9 @@ anchor pair, and adding a new corridor is a new \`*.corridor.yaml\` file — not
 2. **engine ↔ adapters** — the engine knows only the \`AnchorAdapter\` interface;
    every standards-compliant anchor shares one adapter.
 3. **router seam** — the open repo ships a \`RouteResolver\` interface plus a
-   trivial default. The health-/rate-weighted resolver is proprietary and
-   injected at runtime. That single seam is the entire open-core line.
+    trivial default. A health-/rate-weighted resolver could be supplied as a
+    separate proprietary component, but none is included or injected today.
+    The interface is an extension seam, not evidence that such a component exists.
 `,
   },
   {

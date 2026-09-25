@@ -3,7 +3,8 @@
 //
 // This is the whole point of the standard: you don't write a new adapter per anchor.
 // Bespoke exchanges/OTC desks that don't speak SEP-31 implement AnchorAdapter
-// directly instead — those would live in the private repo, not here.
+// directly instead — bespoke implementations are outside this generic adapter
+// and could be maintained separately; no private repo is assumed to exist.
 //
 // The HTTP shapes below follow SEP-31 (GET /info, POST /transactions,
 // GET /transactions/:id), SEP-38 (POST /quote), SEP-10 (GET/POST web_auth) and

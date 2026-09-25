@@ -16,11 +16,12 @@ touches the Stellar network. No corridor in this repo has yet been confirmed
 against a live anchor, so every one of them renders `UNVERIFIED` or
 `NOT RUNNABLE` (see [Liveness](#liveness-has-three-states-and-green-has-to-be-earned)).
 
-This repo is the **open half** of an open-core system. The proprietary half — the
-anchor health/conformance dataset and the route intelligence built on it — lives
-in a separate private repo and is injected at runtime through one interface
-(`RouteResolver`). The open/closed boundary is a **repo boundary, not a folder
-boundary**: everything here is publishable as-is.
+This repo contains the **open, runnable corridor engine** and the `RouteResolver`
+seam. The intended open-core design leaves room for a proprietary anchor
+health/conformance dataset and route intelligence to be supplied through that
+interface, but neither that component nor a separate private repo is included
+here. The current default resolver lets the open repo run corridors on its own.
+Everything in this repo is publishable as-is.
 
 > No smart contract required. SEP-31 is off-chain orchestration of a single
 > **native** Stellar payment (the settle leg). Soroban only ever enters as an
@@ -77,11 +78,12 @@ Three boundaries do the work:
    YAML file, not a code change.
 2. **engine ↔ adapters** — the engine knows only the `AnchorAdapter` interface.
    Standards-compliant anchors share one adapter; bespoke exchange/OTC desks
-   implement the same interface and live in the private repo.
+   implement the same interface. Proprietary implementations could be maintained
+   separately; none is included in this repo.
 3. **router seam** — the open repo ships the `RouteResolver` interface plus a
-   trivial "use the declared anchor" default. The real health-/rate-weighted
-   resolver is proprietary and injected at runtime. **That single seam is the
-   entire open-core line.**
+   trivial "use the declared anchor" default. A health-/rate-weighted resolver
+   could be supplied separately; it is not included or injected by this repo.
+   The interface is the seam for that possible future component.
 
 ## Corridor sequencing
 
@@ -282,7 +284,8 @@ Swap the mocks for the real implementations (both ship in this repo):
   is recorded.
 
 Then point a manifest at the testnet reference server and run it for real. The
-proprietary `RouteResolver` is the one piece injected from the private repo.
+open repo runs with its default `RouteResolver`; a proprietary implementation
+could be supplied separately, but none is included in this archive.
 
 ## Verifying against a real anchor
 
