@@ -1,4 +1,4 @@
-// @corridor/router — the open-core line drawn in code.
+// @corridor/router — the RouteResolver seam drawn in code.
 //
 // The interface and a simple default ship here, in the open repo. A resolver
 // weighted by anchor health, conformance, latency, and proprietary routing data
@@ -33,7 +33,7 @@ export class StaticRouteResolver implements RouteResolver {
   }
 }
 
-// The registry-backed resolver: the open half of the seam, in code.
+// The registry-backed resolver: the evidence-based resolver, in code.
 // StaticRouteResolver above trusts the manifest; this one requires evidence.
 export {
   RegistryRouteResolver,
